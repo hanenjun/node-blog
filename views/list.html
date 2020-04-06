@@ -1,0 +1,25 @@
+<%- include('header.html') -%>
+
+
+    <div class="container mt-5">
+        <h2 class="mb-4">当前栏目：<%=Category.name%></h2>
+        <div class="row row-cols-4">
+            <%articeByIdList.forEach((item)=>{%>
+                <div class="col my-3">
+                    <div class="card h-100">
+                        <% if (item.thumbnail) { %>
+                        <img src="<%= item.thumbnail %> " class="card-img-top" alt="...">
+                        <% }%>
+                        
+                        <div class="card-body">
+                            <h5 class="card-title"><%=item.title%></h5>
+                            <p class="card-text"><small class="text-muted"><%=item.time.toLocaleString()%></small></p>
+                            <p class="card-text"><%=item.content.replace(/<[^>]+>/g,'').substring(0,100)%></p>
+                            <a href="/article/<%=item.id%>" class="stretched-link"></a>
+                        </div>
+                    </div>
+                </div>
+            <%})%>
+        </div>
+    </div>
+    <%- include('footer.html') -%>
